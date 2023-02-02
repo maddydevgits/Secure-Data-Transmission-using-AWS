@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Secure Data Transmission using AWS</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="{{url_for('static',filename='dashboard.css')}}"
+	<link rel="stylesheet" type="text/css" href="slide navbar style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Jost:wght@500&display=swap" rel="stylesheet">
+</head>
+<body>
+        <div class="container">
+            <nav class="menu">
+                <ul class="main-menu">
+                    <li><i class="fa fa-home"></i><a href="/dashboard">Home</a></li>
+                    <li>
+                        <i class="fa fa-briefcase"></i><a href="/sender">Sender</a>
+                    </li>
+                    <li><i class="fa fa-user"></i><a href="/sent">Sent</a></li>
+                    <li class="active"><i class="fa fa-user"></i><a href="/receiver">Inbox</a></li>
+                    <li><i class="fa fa-search"></i><a href="/logout">Logout</a></li>
+                </ul>
+            </nav>
+            <article>
+                <div class="content">
+                    <h3 style="text-align:center;color:rebeccapurple">Received Items</h3> <br/><br/>
+                    <center>
+                    <div class="table-responsive-sm">
+                      <table class="table table-bordered">
+                          <tr>
+                              <th>id</th>
+                              <th>Received from</th>
+                              <th>Data</th>
+                              <th>Hash Code</th>
+                              <th>Status</th>
+                          </tr>
+                          {%for i in range(0, l)%}
+                          <tr>
+                              <td>{{i+1}}</td>
+                              <td>{{dashboard_data[i][0]}}</td>
+                              <td>{{dashboard_data[i][1]}}</td>
+                              <td>{{dashboard_data[i][2]}}</td>
+                              <td>
+                                {% if dashboard_data[i][3] == "Danger" %}
+                                    <span style="color:red">Danger</span>
+                                {% else %}
+                                    <span style="color: green">Protected</span>
+                                {% endif %}  
+                                </td>
+                          </tr>
+                          {%endfor%}
+                      </table>
+                      </div>
+                      </center>
+                </div>
+            </article>
+        </div>
+</body>
+</html>
